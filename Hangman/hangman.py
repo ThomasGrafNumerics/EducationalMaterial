@@ -12,17 +12,16 @@ def waehle_zufaelliges_wort():
     wort = wort[:-1]
     return wort
 
-def wort_anzeigen(wort, eratene_buchstaben):
+def wort_anzeigen(wort, geratene_buchstaben):
     # zeige die bereits geratenen Buchstaben an und die noch nicht erratenen durch Unterstriche
     # der Aufruf print(wort_anzeigen("HANGMAN", "HGA")) printet z.B. HA_G_A_
     angezeigtes_wort = ""
     for buchstabe in wort:
-        if buchstabe in eratene_buchstaben:
+        if buchstabe in geratene_buchstaben:
             angezeigtes_wort += buchstabe
         else:
             angezeigtes_wort += "_"
     return angezeigtes_wort
-
 
 def galgen_ascii(station):
     ascii = ['''
@@ -82,7 +81,7 @@ def galgen_turtle(station):
     torso = 35
     arm = 0.85*torso
     bein = 1.05*torso
-    
+
     if station == 0:
         hideturtle()
         pensize(3)
@@ -130,36 +129,36 @@ def galgen_turtle(station):
 
 def hangman_spielen(wort):
     # starte das Spiel
-    print(wort)
     print("Lass uns Hangman spielen!")
     erraten = False
     falsche = 0
-    eratene_buchstaben = ""
-    print("Aktuell gefundene Buchstaben:", wort_anzeigen(wort, eratene_buchstaben))
-    galgen_ascii(falsche)
-    
+    geratene_buchstaben = ""
+    print("Aktuell gefundene Buchstaben:", wort_anzeigen(wort, geratene_buchstaben))
+    galgen_turtle(falsche)
+
     while (not erraten) and ( falsche < 6 ):
         buchstabe = input("Bitte gib einen Buchstaben ein:\n").upper()
-        if buchstabe in eratene_buchstaben:
+        if buchstabe in geratene_buchstaben:
             print("Den Buchstaben", buchstabe, "hast du schon ausprobiert.")
         elif buchstabe not in wort:
             print(buchstabe, "ist nicht im Wort enthalten.")
             falsche += 1
-            eratene_buchstaben += buchstabe
-            galgen_ascii(falsche)
+            geratene_buchstaben += buchstabe
+            galgen_turtle(falsche)
         else:
             print("Gut gemacht,", buchstabe, "ist im Wort enthalten.")
-            eratene_buchstaben += buchstabe
-            
+            geratene_buchstaben += buchstabe
+
             # das angezeigte Wort hat keine Lücken "_" mehr => das Wort wurde erraten
-            if "_" not in wort_anzeigen(wort, eratene_buchstaben):
+            if "_" not in wort_anzeigen(wort, geratene_buchstaben):
                 erraten = True
-        
-        print(wort_anzeigen(wort, eratene_buchstaben))
-    
+
+        print(wort_anzeigen(wort, geratene_buchstaben))
+
     if erraten:
         print("Toll, du hast das Wort erraten!")
     else:
         print("Sorry, du hast alle deine Leben aufgebraucht. Das gesuchte Wort war:", wort)
 
-hangman_spielen(waehle_zufaelliges_wort())
+wort = waehle_zufaelliges_wort()
+hangman_spielen(wort)
