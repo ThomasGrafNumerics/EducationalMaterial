@@ -649,8 +649,10 @@
 	\renewcommand{\theccaufgabe}{\arabic{section}.\arabic{ccaufgabe}}
 }
 
-\crefname{ccaufgabe}{Aufgabe}{Aufgaben}
-\Crefname{ccaufgabe}{Aufgabe}{Aufgaben}
+% \crefname{ccaufgabe}{Aufgabe}{Aufgaben}
+% \Crefname{ccaufgabe}{Aufgabe}{Aufgaben}
+\crefname{ccaufgabe}{A}{A}
+\Crefname{ccaufgabe}{A}{A}
 
 \newenvironment{aufgabe}[2][]
     {
@@ -661,7 +663,7 @@
         	\mdfsetup{
             	frametitle={
             	\tikz[baseline=(current bounding box.east),outer sep=0pt]
-            	\node[anchor=east,rectangle,fill=DarkSeaGreen]{\strut Aufgabe~\theccA~(A\theccaufgabe)};},
+            	\node[anchor=east,rectangle,fill=DarkSeaGreen]{\strut Aufgabe~\theccA~(A~\theccaufgabe)};},
             	innertopmargin=0pt, linecolor=DarkSeaGreen,
             	linewidth=1pt, topline=true, frametitleaboveskip=\dimexpr-\ht\strutbox\relax
             }
@@ -670,7 +672,7 @@
         	\mdfsetup{
             	frametitle={
             	\tikz[baseline=(current bounding box.east),outer sep=0pt]
-            	\node[anchor=east,rectangle,fill=DarkSeaGreen]{\strut Aufgabe~\theccA~#1~(A\theccaufgabe)};},
+            	\node[anchor=east,rectangle,fill=DarkSeaGreen]{\strut Aufgabe~\theccA~#1~(A~\theccaufgabe)};},
             	innertopmargin=0pt, linecolor=DarkSeaGreen,
             	linewidth=1pt, topline=true, frametitleaboveskip=\dimexpr-\ht\strutbox\relax
             }
@@ -817,9 +819,9 @@
 
 \setcounter{caxiome}{0}
 \iftoggle{book} {
-	\renewcommand{\thecaxiome}{\arabic{chapter}.\arabic{caxiome}}
+	\renewcommand{\thecaxiome}{\arabic{chapter}.\roman{caxiome}}
 } {
-	\renewcommand{\thecaxiome}{\arabic{section}.\arabic{caxiome}}
+	\renewcommand{\thecaxiome}{\arabic{section}.\roman{caxiome}}
 }
 
 \crefname{caxiome}{Axiom}{Axiome}
@@ -1003,3 +1005,5 @@
 \usepackage{physics}
 \usepackage{tikz-3dplot}
 \usepackage[outline]{contour} % glow around text
+
+\usepackage[nottoc]{tocbibind}

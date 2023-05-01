@@ -32,7 +32,7 @@ Das kartesische Produkt dreier Mengen $A, B$ und $C$ wird definiert durch:
 \begin{align*}
     A\times B\times C := (A\times B)\times C.
 \end{align*}
-Ein Element $((a,b),c)$ aus $A\times B\times C$ wird dann allerdings einfach $(a,b,c)$ geschrieben. Dieses Verknüpfen mit weiteren Produkten kann wiederholt\footnote{siehe \cref{sec:rekursion}} werden um Produkte mit $n$ Faktoren $A_1\times\ldots\times A_n$ (Mengen) zu definieren:
+Ein Element $((a,b),c)$ aus $A\times B\times C$ wird dann allerdings einfach $(a,b,c)$ geschrieben. Dieses Verknüpfen mit weiteren Produkten kann wiederholt\footnote{siehe \cref{sec:rekursion}} werden, um Produkte mit $n$ Faktoren $A_1\times\ldots\times A_n$ (Mengen) zu definieren:
 \begin{align*}
     A_1\times\ldots\times A_n := \lr{A_1\times\ldots\times A_{n-1}}\times A_n.
 \end{align*}
@@ -45,7 +45,7 @@ Ist $X$ eine Menge, dann bezeichnen wir das kartesische Produkt
 indem der Faktor $X$ $n$-mal vorkommt, mit $X^n$.
 
 \beispiel{-}{
-Die Position eines geometrischen Punktes $P$ im zweidimensionalen Raum (der Ebene), ist eindeutig bestimmt durch zwei Raumkoordinaten. Die beiden Raumkoordinaten des Punktes $P$ in \cref{fig:ebene} sind 2 und 3. Die Ebene können wir uns also denken als die Menge aller Punkte mit Koordinaten der Form $(x,y)$, wobei $x$ und $y$ jeweils reelle Zahlen sind. Somit können wir die Ebene mit dem kartesischen Produkt $\R^2 := \R\times\R$ identifizieren.
+Die Position eines geometrischen Punktes $P$ im zweidimensionalen Raum (der Ebene) ist eindeutig bestimmt durch zwei Raumkoordinaten. Die beiden Raumkoordinaten des Punktes $P$ in \cref{fig:ebene} sind 2 und 3. Die Ebene können wir uns also denken als die Menge aller Punkte mit Koordinaten der Form $(x,y)$, wobei $x$ und $y$ jeweils reelle Zahlen sind. Somit können wir die Ebene mit dem kartesischen Produkt $\R^2 := \R\times\R$ identifizieren.
 \begin{figure}[H]
 \begin{center}
 \begin{tikzpicture}[scale=0.7]
@@ -207,7 +207,7 @@ Eine Relation $\mathcal{R}$ wird \tib{funktional} genannt, falls
 \end{align*}
 Eine \tib{funktionale Relation} wird als \tib{Funktion} bezeichnet. Falls $X$ und $Y$ zwei (nicht notwendigerweise verschiedene) Mengen sind, ist eine Relation $\mathcal{R}\subseteq X\times Y$ eine funktionale Relation auf $X$, falls für jedes $x\in X$ ein eindeutiges Element $y\in Y$ existiert, sodass $(x,y)\in\mathcal{R}$. Eine derartige funktionale Relation $\mathcal{R}\subseteq X\times Y$ ist eine \tib{Abbildung} \textit{von} $X$ \textit{nach} $Y$ oder eine \tib{Funktion} \textit{von} $X$ \textit{nach} $Y$.
 \end{definition}
-In \cref{definition:funktion} haben wir eine Funktion $f:X\to Y$ definiert, als die Zuweisung eines Elementes $y\in Y$ \quotes{zugehörig} zu $x\in X$ in gemäss einer \quotes{Regel} $f$. Wie wir nun sehen, entspricht dies der Relation: für jedes $x\in X$ existiert ein eindeutiges $y\in Y$, sodass $(x,y)\in f\subseteq X\times Y$. In dieser Betrachtungsweise ist eine Funktion $f: X\to Y$ also eine Teilmenge $f\subseteq X\times Y$ des direkten Produkts ihrer Definitionsmenge $X$ und ihrer Zielmenge $Y$.
+In \cref{definition:funktion} haben wir eine Funktion $f:X\to Y$ definiert als die Zuweisung eines Elementes $y\in Y$ \quotes{zugehörig} zu $x\in X$ gemäss einer \quotes{Regel} $f$. Wie wir nun sehen, entspricht dies der Relation: Für jedes $x\in X$ existiert ein eindeutiges $y\in Y$, sodass $(x,y)\in f\subseteq X\times Y$. In dieser Betrachtungsweise ist eine Funktion $f: X\to Y$ also eine Teilmenge $f\subseteq X\times Y$ des direkten Produkts ihrer Definitionsmenge $X$ und ihrer Zielmenge $Y$.
 \beispiel{-}
 {
     Sei $X:=\lrc{1,2,3}$ und $Y:=\lrc{2,3,4}$. Damit enthält das kartesische Produkt $X\times Y$ genau die geordneten Paare
@@ -224,7 +224,7 @@ In \cref{definition:funktion} haben wir eine Funktion $f:X\to Y$ definiert, als 
             (1,4) & \textcolor{DarkGreen}{(2,4)} & (3,4)\\
             (1,3) & (2,3) & (3,3)\\
             \textcolor{DarkGreen}{(1,2)} & (2,2) & (3,2)\\
-        \end{matrix*}.
+        \end{matrix*}
     \end{align*}
     Dies entspricht offensichtlich genau der Beschreibung
     \begin{align*}
@@ -239,7 +239,7 @@ Beachten Sie, dass \cref{definition:funktionaleRelation} durchaus erlaubt, dass 
 \begin{align*}
     P = (x,y)
 \end{align*}
-der zweidimensionalen Ebene $\R^2 = \R\times\R$, seinen Abstand
+der zweidimensionalen Ebene $\R^2 = \R\times\R$ seinen Abstand
 \begin{align*}
     \sqrt{x^2 + y^2}
 \end{align*}
@@ -262,7 +262,7 @@ Wir lassen hier die physikalischen Einheiten weg und nehmen an, dass $l$ und $m$
 \end{align*}
 Beachten Sie, dass hier das kartesische Produkt $\lr{\Rp}\times \lr{\Rp} = \lr{\Rp}^2$ der positiven reellen Zahlen mit sich selbst verwendet wurde. Dies ist eine Funktion \enquote{in zwei Variablen $l$ und $m$}.
 }
-{Wir bezeichnen mit $+$ die Addition in den natürlichen Zahlen. Dann ist $+$ eine Funktion $+: \N\times \N \to\N$. Sie erhält als Eingaben zwei natürliche Zahlen $x,y$ und berechnet ihre Summe $+(x,y)$, welche selber wieder eine natürliche Zahl ist. Anstelle von $+(x,y)$ schreiben wir aber $x + y$. So gilt beispielsweise $(3,5)\in\N^2$ und
+{Wir bezeichnen mit $+$ die Addition in den natürlichen Zahlen. Dann ist $+$ eine Funktion $+: \N\times \N \to\N$. Sie erhält als Eingaben zwei natürliche Zahlen $x,y$ und berechnet ihre Summe $+(x,y)$, welche selbst wieder eine natürliche Zahl ist. Anstelle von $+(x,y)$ schreiben wir aber $x + y$. So gilt beispielsweise $(3,5)\in\N^2$ und
 \begin{align*}
     +(3,5) = 3 + 5 = 8 \in\N.
 \end{align*}
@@ -282,11 +282,11 @@ erhält also $n$ (nicht notwendigerweise verschiedene) Elemente aus $X$ als Eing
 Dies ist eine Funktion \enquote{in $n$ Variablen}.}
 
 \begin{definition}[Graph einer Funktion]{definition:graph}
-Mit unserer ursprünglichen \cref{definition:funktion} einer Funktion ist der \tib{Graph} einer Funktion $f: X\to Y$ die Teilmenge $\Gamma$ des kartesischen Produkts $X\times Y$, deren Elemente die Gestalt $(x,f(x))$ besitzen. Damit also:
+Mit unserer ursprünglichen \cref{definition:funktion} einer Funktion ist der \tib{Graph} einer Funktion $f: X\to Y$ die Teilmenge $\Gamma$ des kartesischen Produkts $X\times Y$, deren Elemente die Gestalt $(x,f(x))$ besitzen. Damit gilt also:
 \begin{align*}
     \Gamma := \setcm{(x,y)\in X\times Y}{y = f(x)}.
 \end{align*}
-In der Definition einer Funktion als funktionale Relation, verschwindet offensichtlich die Unterscheidung zwischen der Funktion $f$ und ihrem Graphen $\Gamma$, da definitionsgemäss $f = \Gamma$ gilt.
+In der Definition einer Funktion als funktionale Relation verschwindet offensichtlich die Unterscheidung zwischen der Funktion $f$ und ihrem Graphen $\Gamma$, da definitionsgemäss $f = \Gamma$ gilt.
 \end{definition}
 
 
@@ -302,7 +302,7 @@ Ein Ziel dieses Abschnitts ist es, die Vorstellung \enquote{von Vorgängern abh�
 \begin{align*}
     \lrc{f(0), f(1),\ldots ,f(n)}
 \end{align*}
-lässt sich durch Funktionen definieren. Seien die Funktionswerte $f(0), f(1),\ldots ,f(n)$ jeweils Elemente einer Menge $X$. Die Funktion, nennen wir sie $V_{n+1}$, welche $f(n+1)$ aus den $(n+1)$ Vorgängern $f(0), f(1),\ldots , f(n)$ berechnet, erhält also $n+1$ Werte aus $X$ und gibt selber wieder ein Wert aus $X$ zurück. Somit ist $V_{n+1}$ ist also eine Funktion von $X^{n+1}$ nach $X$ und formalisiert die \textit{Abhängigkeit} des Wertes $f(n+1)$ von seinen Vorgängern.
+lässt sich durch Funktionen definieren. Seien die Funktionswerte $f(0), f(1),\ldots ,f(n)$ jeweils Elemente einer Menge $X$. Die Funktion, nennen wir sie $V_{n+1}$, welche $f(n+1)$ aus den $(n+1)$ Vorgängern $f(0), f(1),\ldots , f(n)$ berechnet, erhält also $n+1$ Werte aus $X$ und gibt selbst wieder einen Wert aus $X$ zurück. Somit ist $V_{n+1}$ also eine Funktion von $X^{n+1}$ nach $X$ und formalisiert die \textit{Abhängigkeit} des Wertes $f(n+1)$ von seinen Vorgängern.
 
 \beispiele{beispiele:PrinzipRek}{}
 {
@@ -320,7 +320,7 @@ erfüllt. Die auf diese Weise definierte Funktion $f$ nennen wir die \textit{Fak
 {
 Wie sieht es mit der Fibonacci-Folge aus? Auch hier ist $X:=\N$ und wir definieren den Startwert
 \begin{align*}
-    F(0) := 0,
+    F(0) := 0
 \end{align*}
 sowie die Funktion $V_{n+1}: X^{n+1}\to X$:
 \[
@@ -401,7 +401,7 @@ gelten. Dies beweist den Induktionsschritt.
 \begin{align*}
     f_n:\lrc{0,1,\ldots,n}\to X
 \end{align*}
-gibt, mit
+gibt mit
 \begin{align}\label{eq:001}
     f_n(0) &= a, \nonumber\\
     f_n(k) &= f_k(k), \\
@@ -430,8 +430,8 @@ für $0<k+1\leq n$. Des Weiteren gilt
 \begin{align*}
     f_{n+1}(n+1) = V_{n+1}\lr{f_n(0),\ldots, f_n(n)} = V_{n+1}\lr{f_{n+1}(0),\ldots, f_{n+1}(n)}.
 \end{align*}
-Dies beweist den Induktionsschritt $n\to n+1$ und zeigt die Existenz der Funktionen $f_n$ für alles $n\in\N$ gemäss den Gleichungen \ref{eq:001}.
-\item Nach dem vorbereitenden Schritt in Punkt \ref{itemb}, definieren wir $f:\N\to X$ durch
+Dies beweist den Induktionsschritt $n\to n+1$ und zeigt die Existenz der Funktionen $f_n$ für alle $n\in\N$ gemäss den Gleichungen \ref{eq:001}.
+\item Nach dem vorbereitenden Schritt in Punkt \ref{itemb} definieren wir $f:\N\to X$ durch
 \begin{align*}
     f(n) :=
     \begin{cases}

@@ -2,7 +2,7 @@
 
 Eines der häufigsten algorithmischen Probleme ist das \textit{Sortieren}.
 \begin{definition}[Sortierproblem]{definition:Sortierproblem}
-    Sei $S$ eine Menge deren Elemente durch die Relation $\leq$ verglichen werden können ($\leq$ heisst dann \textit{totale Ordnung} auf $S$). Das \tib{Sortierproblem}\index{Sortierproblem} lautet dann:
+    Sei $S$ eine Menge, deren Elemente durch die Relation $\leq$ verglichen werden können ($\leq$ heisst dann \textit{totale Ordnung} auf $S$). Das \tib{Sortierproblem}\index{Sortierproblem} lautet dann:
     \begin{description}
         \item[Eingabe:] Eine endliche Folge von $n\in\Nunit$ Elementen $a_1,a_2,\ldots,a_n$ aus $S$.
         \item[Ausgabe:] Eine Umordnung $a_1', a_2', \ldots, a_n'$ der Eingabe, sodass $a_1'\leq a_2' \leq \ldots \leq a_n'$ (die Elemente der Eingabe sind nun aufsteigend sortiert).
@@ -54,8 +54,8 @@ Eines der häufigsten algorithmischen Probleme ist das \textit{Sortieren}.
 Natürlich ist das Bedürfnis nach schnellen Algorithmen besonders gross, falls diese Probleme lösen, die zeitkritisch sind und häufig auftreten. Mittlerweile sind viele Sortieralgorithmen bekannt. Ein berühmter Vertreter dieser Algorithmen ist \textit{merge sort}. Der Algorithmus \textit{merge sort} arbeitet rekursiv. Dabei macht er insbesondere von der Tatsache Gebrauch, dass sich zwei sortierte Listen recht effizient zu einer ebenfalls sortierten Liste zusammenfügen lassen. Es seien also zwei jeweils \textbf{bereits sortierte} Listen \pythoninline{L} und \pythoninline{R} gegeben. Diese Listen besitzen die Längen (Anzahl von Elementen) \pythoninline{len(L)} und \pythoninline{len(R)}. Es ist nun nicht besonders aufwändig, die beiden Listen \pythoninline{L} und \pythoninline{R} zu einer neuen \textbf{sortierten} Liste \pythoninline{M} der Länge \pythoninline{len(L) + len(R)} zu vereinen (englisch: \textit{to merge}).
 
 \begin{aufgabe}{aufgabe:0501}
-Angenommen wir haben zwei jeweils \textbf{bereits sortierte} Listen \pythoninline{L} und \pythoninline{R} gegeben. Schreiben Sie eine Python Funktion \pythoninline{merge(L,R)}, welche \pythoninline{L} und \pythoninline{R} zu einer einzigen sortierten Liste vereint. Ihre Funktion soll unbedingt Gebrauch von der Tatsache machen, dass \pythoninline{L} und \pythoninline{R} bereits sortiert sind.
-\begin{lstlisting}[language=Python,caption=Testfälle für die Funktion \pythoninline{merge}.,numbers=none]
+Angenommen wir haben zwei jeweils \textbf{bereits sortierte} Listen \pythoninline{L} und \pythoninline{R} gegeben. Schreiben Sie eine Python-Funktion \pythoninline{merge(L,R)}, welche \pythoninline{L} und \pythoninline{R} zu einer einzigen sortierten Liste vereint. Ihre Funktion soll unbedingt Gebrauch von der Tatsache machen, dass \pythoninline{L} und \pythoninline{R} bereits sortiert sind.
+\begin{lstlisting}[language=Python,caption=Testfälle für die Funktion \pythoninline{merge},numbers=none]
 Testfall 0
 Eingabe: L = [8, 12, 17], R = []
 Ausgabe: [8, 12, 17]
@@ -70,56 +70,17 @@ Ausgabe: [0, 1, 5, 10, 50, 100, 1000]
 \end{lstlisting}
 Ihre Funktion braucht nicht zu überprüfen, ob \pythoninline{L} und \pythoninline{R} tatsächlich sortiert sind.
 \end{aufgabe}
-\begin{antwort}{aufgabe:0501}
-\begin{lstlisting}[language=Python,caption=Implementation der Funktion \pythoninline{merge}.,label=listing:merge]
-def merge(L,R):
-    # L und R sind jeweils bereits sortierte Listen
-
-    # M wird am Ende len(L) + len(R) viele Elemente haben
-    # und eine sortierte Liste sein
-    M = [] # M ist zu Beginn einen leere Liste
-
-    l = 0 # Laufindex innerhalb der Liste L
-    r = 0 # Laufindex innerhalb der Liste R
-
-    # solange weder L noch R vollständig durchlaufen wurden
-    while (l < len(L)) and (r < len(R)):
-        if L[l] <= R[r]:
-            M.append(L[l])
-            l = l + 1
-        else:
-            M.append(R[r])
-            r = r + 1
-
-    while l < len(L):
-        M.append(L[l])
-        l = l + 1
-    while r < len(R):
-        M.append(R[r])
-        r = r + 1
-    return M
-\end{lstlisting}     
-\end{antwort}
 
 \begin{aufgabe}{aufgabe:0502}
 Analysieren Sie den Algorithmus, welchen Sie in \cref{aufgabe:0501} geschrieben haben. Welche Laufzeit hat dieser Algorithmus in Abhängigkeit von \pythoninline{n = len(L) + len(R)}?
 \end{aufgabe}
-
-\begin{antwort}{aufgabe:0502}
-Wir beziehen uns hier auf den Algorithmus in der Musterlösung zu \cref{aufgabe:0501}. Der Algorithmus besteht im Wesentlichen in einer Schleife über die summierte Länge
-\begin{center}
-    \pythoninline{n = len(L) + len(R)}
-\end{center}
-der beiden gegebenen Listen. Somit ist die Laufzeit gegeben durch $\Theta(n)$.
-\end{antwort}
-
 \noindent
-Der \textit{merge sort} Algorithmus teilt eine zu sortierende Liste rekursiv so lange in zwei Teile, bis nur noch Listen der Länge 1 vorliegen. Offensichtlich ist jede Liste der Länge 1 bereits sortiert. Schliesslich werden bereits sortierte Listen mit Hilfe des \textit{merge} Algorithmus zu der gesuchten sortierten Liste zusammengefügt. Mit Hilfe der bereits in \cref{aufgabe:0501} erstellten Routine \textit{merge}, lässt sich der berühmte \textit{merge sort} Algorithmus in nur wenigen Zeilen in Python beschreiben. Eine mögliche Implementation ist in \cref{listing:mergesort} gegeben.
-\begin{lstlisting}[language=Python,caption=Implementation der Funktion \pythoninline{merge_sort}.,label=listing:mergesort]
+Der \textit{merge sort} Algorithmus teilt eine zu sortierende Liste rekursiv so lange in zwei Teile, bis nur noch Listen der Länge 1 vorliegen. Offensichtlich ist jede Liste der Länge 1 bereits sortiert. Schliesslich werden bereits sortierte Listen mit Hilfe des \textit{merge} Algorithmus zu der gesuchten sortierten Liste zusammengefügt. Mit Hilfe der bereits in \cref{aufgabe:0501} erstellten Routine \textit{merge} lässt sich der berühmte \textit{merge sort} Algorithmus in nur wenigen Zeilen in Python beschreiben. Eine mögliche Implementation ist in \cref{listing:mergesort} gegeben.
+\begin{lstlisting}[language=Python,caption=Implementation der Funktion \pythoninline{merge_sort},label=listing:mergesort]
 def merge_sort(A):
     # sortiert die Liste A
     if len(A) == 1: # Rekursionsanfang
-        return A # Listen der Länge 1 sind schon sortiert
+        return A # Listen der Länge 1 sind schon sortiert.
 
     # teile A in linke Hälfte und rechte Teile
     if len(A) % 2 == 0: # falls len(A) gerade ist
@@ -170,8 +131,8 @@ Beachten Sie, dass der in \cref{listing:mergesort} gegebene Algorithmus durchaus
 
 Die Laufzeit des \textit{merge sort} Algorithmus setzt sich aus drei einzelnen Teilen zusammen:
 \begin{description}
-  \item[Divide:] Dieser Teil berechnet lediglich die Mitte der zu sortierenden Liste. Dazu ist offensichtlich nur konstante Zeit $\Theta(1)$ notwendig.
-  \item[Conquer:] Beim Aufruf des \textit{merge sort} Algorithmus mit Problemgrösse $n$, werden rekursiv \textcolor{Blue}{zwei} Teilprobleme (derselben Art) mit jeweils halber Grösse $\textcolor{Green}{n/2}$ aufgerufen. Dies trägt $\textcolor{Blue}{2}T(\textcolor{Green}{n/2})$ zur Laufzeit bei.
+  \item[Divide:] Dieser Teil berechnet lediglich die Mitte der zu sortierenden Liste. Dazu ist offensichtlich nur eine konstante Zeit $\Theta(1)$ notwendig.
+  \item[Conquer:] Beim Aufruf des \textit{merge sort} Algorithmus mit Problemgrösse $n$ werden rekursiv \textcolor{Blue}{zwei} Teilprobleme (derselben Art) mit jeweils halber Grösse $\textcolor{Green}{n/2}$ aufgerufen. Dies trägt $\textcolor{Blue}{2}T(\textcolor{Green}{n/2})$ zur Laufzeit bei.
   \item[Combine:] Wie wir in \cref{aufgabe:0502} bereits festgestellt haben, benötigt \textit{merge sort} die lineare Zeit $\Theta(n)$ für die Vereinigung zweier Listen mit summierter Länge \pythoninline{n = len(L) + len(R)}.
 \end{description}
 Zusammengefasst ist die Laufzeit $T(n)$ von \textit{merge sort} im schlimmsten Fall also gegeben durch
@@ -200,7 +161,7 @@ Diesen Ausdruck können wir mit der Definition $c := \max\lrc{c_0,c_1}$ sogar no
     2T(n/2) + cn, & \text{falls $n\geq 2$},
   \end{cases}
 \end{align}
-da wir uns im Moment lediglich für eine obere Schranke für die Laufzeit $T(n)$ interessieren. Beachten Sie, dass \cref{eq:rek3} die Funktion $T$ (Laufzeit) rekursiv definiert. Gemäss \cref{satz:Rekursion} zum Prinzip der rekursiven Definition, existiert genau eine Funktion $T$, welche diese Gleichung erfüllt. Man bezeichnet solch eine rekursiv definierende Gleichung auch als \tib{Rekurrenzgleichung}\index{Rekurrenzgleichung}. 
+da wir uns im Moment lediglich für eine obere Schranke für die Laufzeit $T(n)$ interessieren. Beachten Sie, dass \cref{eq:rek3} die Funktion $T$ (Laufzeit) rekursiv definiert. Gemäss \cref{satz:Rekursion} zum Prinzip der rekursiven Definition existiert genau eine Funktion $T$, welche diese Gleichung erfüllt. Man bezeichnet solch eine rekursiv definierende Gleichung auch als \tib{Rekurrenzgleichung}\index{Rekurrenzgleichung}. 
 
 Wir wollen nun die eindeutige Lösung von \cref{eq:rek3} durch intuitive Überlegungen finden. Betrachten Sie \cref{fig:mergesortBaum}.
 \begin{itemize}
@@ -213,7 +174,7 @@ Diese Überlegung zeigt, dass jede \enquote{Etage} genau $cn$ zu den Gesamtkoste
 \begin{align*}
   \log_2(n) = \log_2\lr{2^k} = k
 \end{align*}
-mal in $n$ enthalten. Das ist die Anzahl Teilungen. Der Baum hat somit $\log_2(n) + 1$ viele \enquote{Etagen}. Die Laufzeit von \textit{merge sort} ist also
+Male in $n$ enthalten. Das ist die Anzahl Teilungen. Der Baum hat somit $\log_2(n) + 1$ viele \enquote{Etagen}. Die Laufzeit von \textit{merge sort} ist also
 \begin{align*}
   cn\lr{\log_2(n) + 1}
 \end{align*}
@@ -316,6 +277,56 @@ die rekursive Gleichung (Rekurrenz)
   \end{cases}
 \]
 \end{aufgabe}
+
+\begin{comment}
+\section{\textit{merge sort} ist optimal}
+Es lässt sich relativ leicht beweisen, dass \textit{merge sort} in einem gewissen Sinne eine optimaler (was die Laufzeit betrifft) Sortieralgorithmus ist. Dies ist einer der Gründe, warum der \textit{merge sort} Algorithmus in Schulen und Universitäten gerne untersucht wird. Was meinen wir mit \enquote{in einem gewissen Sinne}? Ein Sortieralgorithmus wird ein (reiner) \textit{vergleichsbasierter} Sortieralgorithmus genannt, falls der Algorithmus lediglich Vergleiche der Form $\leq$ verwendet, um Informationen über die Reihenfolge der zu sortierenden Elemente zu gewinnen. Wir wollen beweisen, dass jeder vergleichsbasiertere Sortieralgorithmus mindestens $n\log(n)$ Vergleiche benötigt, um $n$ Elemente zu sortieren. In diesem Abschnitt nehmen wir an, dass alle zu sortierenden Elemente unterschiedlich sind (ohne Beschränkung der Allgemeinheit).
+
+Wir können die Arbeit vergleichsbasierter Sortieralgorithmen durch binäre Entscheidungsbäume illustrieren. 
+\end{comment}
+
+
+\begin{antwort}{aufgabe:0501}
+\begin{lstlisting}[language=Python,caption=Implementation der Funktion \pythoninline{merge},label=listing:merge]
+def merge(L,R):
+    # L und R sind jeweils bereits sortierte Listen.
+
+    # M wird am Ende len(L) + len(R) viele Elemente haben
+    # und eine sortierte Liste sein.
+    M = [] # M ist zu Beginn eine leere Liste.
+
+    l = 0 # Laufindex innerhalb der Liste L
+    r = 0 # Laufindex innerhalb der Liste R
+
+    # solange weder L noch R vollständig durchlaufen wurden
+    while (l < len(L)) and (r < len(R)):
+        if L[l] <= R[r]:
+            M.append(L[l])
+            l = l + 1
+        else:
+            M.append(R[r])
+            r = r + 1
+
+    while l < len(L):
+        M.append(L[l])
+        l = l + 1
+    while r < len(R):
+        M.append(R[r])
+        r = r + 1
+    return M
+\end{lstlisting}     
+\end{antwort}
+
+
+\begin{antwort}{aufgabe:0502}
+Wir beziehen uns hier auf den Algorithmus in der Musterlösung zu \cref{aufgabe:0501}. Der Algorithmus besteht im Wesentlichen in einer Schleife über die summierte Länge
+\begin{center}
+    \pythoninline{n = len(L) + len(R)}
+\end{center}
+der beiden gegebenen Listen. Somit ist die Laufzeit gegeben durch $\Theta(n)$.
+\end{antwort}
+
+
 \begin{antwort}{aufgabe:0503}
 Sei also $T(n) := n\log_2(n)$. Es ist zu zeigen, dass diese Wahl von $T$ die Rekurrenz in der Aufgabenstellung erfüllt. Wir untersuchen den Fall $T(2) = T\lr{2^1}$ separat.
 Wegen $2\log_2(2) = 2$ ist die Behauptung für $T\lr{2^1}$ korrekt. Nun zeigen wir durch Induktion, dass für alle $k\in\N$ mit $k\geq 2$ die Aussage
@@ -326,7 +337,7 @@ korrekt ist. Mit den Logarithmengesetzen finden wir
 \begin{align*}
     T\lr{2^2} = 2^2\log_2\lr{2^2} = 2^2(\log_2(2) + \log_2(2)) = 2\cdot 2\log_2(2) + 2^2 = 2T\lr{2^1} + 2^2
 \end{align*}
-und damit ist $\mathcal{A}(2)$ gezeigt. Sei $\mathcal{A}(n)$ nun für ein $n\in\N$ mit $n\geq 2$ war. Dann finden wir
+und damit ist $\mathcal{A}(2)$ gezeigt. Sei $\mathcal{A}(n)$ nun für ein $n\in\N$ mit $n\geq 2$ wahr, dann finden wir
 \begin{align*}
     &T\lr{2^{k+1}} = \\
     &2^{k+1}\log_2\lr{2^{k+1}} = \\
@@ -336,13 +347,6 @@ und damit ist $\mathcal{A}(2)$ gezeigt. Sei $\mathcal{A}(n)$ nun für ein $n\in\
 \end{align*}
 Dies zeigt den Induktionsschritt.
 \end{antwort}
-
-\begin{comment}
-\section{\textit{merge sort} ist optimal}
-Es lässt sich relativ leicht beweisen, dass \textit{merge sort} in einem gewissen Sinne eine optimaler (was die Laufzeit betrifft) Sortieralgorithmus ist. Dies ist einer der Gründe, warum der \textit{merge sort} Algorithmus in Schulen und Universitäten gerne untersucht wird. Was meinen wir mit \enquote{in einem gewissen Sinne}? Ein Sortieralgorithmus wird ein (reiner) \textit{vergleichsbasierter} Sortieralgorithmus genannt, falls der Algorithmus lediglich Vergleiche der Form $\leq$ verwendet, um Informationen über die Reihenfolge der zu sortierenden Elemente zu gewinnen. Wir wollen beweisen, dass jeder vergleichsbasiertere Sortieralgorithmus mindestens $n\log(n)$ Vergleiche benötigt, um $n$ Elemente zu sortieren. In diesem Abschnitt nehmen wir an, dass alle zu sortierenden Elemente unterschiedlich sind (ohne Beschränkung der Allgemeinheit).
-
-Wir können die Arbeit vergleichsbasierter Sortieralgorithmen durch binäre Entscheidungsbäume illustrieren. 
-\end{comment}
 
 
 \clearpage
